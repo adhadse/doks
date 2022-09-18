@@ -356,6 +356,9 @@ body {
   .katex-html > .newline {
       margin-top: 1rem;
   }
+  .katex-html {
+    overflow: scroll hidden;
+  }
 }
 
 .card-bar {
