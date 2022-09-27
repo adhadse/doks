@@ -9,7 +9,7 @@ $(function () {
             if (i != sectionIds.length-1) {
               var containerHeight = $(nextCotainer).offset().top;
             } else {
-              var containerHeight = $(container).outerHeight();
+              var containerHeight = $(container).outerHeight() + $(".docs-navigation").offset().top;
             }
             var containerBottom = containerOffset + containerHeight;
 
