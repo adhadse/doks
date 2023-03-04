@@ -81,6 +81,32 @@ $navbar-dark-active-color:          $link-color-dark;
   @extend .dropdown-menu-dark;
 }
 */
+[data-dark-mode] body.home {
+  background-color: white;
+
+  h1 {
+    color: black;
+  }
+
+  p {
+    color: black;
+  }
+
+  .footer {
+    border-top: 1px solid $gray-200;
+
+    li#copyright-footer {
+      color: $gray-600;
+      a {
+        color: $gray-600;
+
+        &:hover {
+          color: $purple;
+        }
+      }
+    }
+  }
+}
 
 [data-dark-mode] body .navbar,
 [data-dark-mode] body .doks-subnavbar {
@@ -528,6 +554,13 @@ $navbar-dark-active-color:          $link-color-dark;
   background-size: 1.5rem;
 }
 
+[data-dark-mode] body ::selection {
+  background: $white;
+  color: $black-original;
+  border-radius: 1em;
+  border: 1px solid;
+}
+
 @include media-breakpoint-up(md) {
   [data-dark-mode] body .alert-dismissible .btn-close {
     background-size: 1.25rem;
@@ -555,13 +588,6 @@ $navbar-dark-active-color:          $link-color-dark;
 
 [data-dark-mode] body .email-form .form-control:focus {
   border: 1px solid $link-color-dark;
-}
-
-[data-dark-mode] body ::selection {
-  background: $white;
-  color: $black-original;
-  border-radius: 1em;
-  border: 1px solid;
 }
 
 [data-dark-mode] .page-link {

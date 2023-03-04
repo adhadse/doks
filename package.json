@@ -18,6 +18,7 @@
     "create": "exec-bin node_modules/.bin/hugo/hugo new",
     "prestart": "npm run clean",
     "start": "exec-bin node_modules/.bin/hugo/hugo server --bind=0.0.0.0 --disableFastRender --noHTTPCache --ignoreCache",
+    "debug": "exec-bin node_modules/.bin/hugo/hugo server -v --debug --bind=0.0.0.0 --disableFastRender --noHTTPCache --ignoreCache",
     "prebuild": "npm run clean",
     "build": "exec-bin node_modules/.bin/hugo/hugo --gc --minify",
     "build:preview": "npm run build -D -F",
@@ -50,6 +51,7 @@
     "exec-bin": "^1.0.0",
     "flexsearch": "^0.7.21",
     "highlight.js": "^11.5",
+    "highlightjs-line-numbers.js": "^2.8.0",
     "hugo-installer": "^3.1",
     "instant.page": "^5.1",
     "katex": "^0.15",
@@ -62,9 +64,10 @@
     "purgecss-whitelister": "^2.4",
     "shx": "^0.3.4",
     "stylelint": "^14.8",
-    "stylelint-config-standard-scss": "^3.0"
+    "stylelint-config-standard-scss": "^3.0",
+    "hugo": "^0.0.3"
   },
   "otherDependencies": {
-    "hugo": "0.99.0"
+    "hugo": "0.104.0"
   }
 }

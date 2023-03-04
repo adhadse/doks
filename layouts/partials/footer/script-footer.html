@@ -9,8 +9,6 @@
 
 {{ $mermaid := resources.Get "js/mermaid.js" | js.Build -}}
 
-{{ $dotwave := resources.Get "js/dot-wave.js" -}}
-
 {{ $app := resources.Get "js/app.js" -}}
 
 {{ $slice := slice $app -}}
@@ -50,11 +48,11 @@
   {{ $slice = $slice | append $katexConfig -}}
 {{ end -}}
 
-{{ $highlight := resources.Get "js/highlight.js" -}}
-{{ $highlight := $highlight | js.Build -}} 
-
 {{ $scrollLock := resources.Get "js/scroll-lock.js" | js.Build -}}
 {{ $slice = $slice | append $scrollLock -}}
+
+{{ $highlight := resources.Get "js/highlight.js" -}}
+{{ $highlight := $highlight | js.Build -}}
 
 {{ $js := $slice | resources.Concat "main.js" -}}
 
@@ -66,6 +64,9 @@
     <script src="{{ $katex.RelPermalink }}" defer></script>
     <script src="{{ $katexAutoRender.RelPermalink }}" onload="renderMathInElement(document.body);" defer></script>
   {{ end -}}
+  {{ if .Site.Params.options.highLight -}}
+    <script src="{{ $highlight.RelPermalink }}" defer></script>
+  {{ end -}}
   <script src="{{ $js.RelPermalink }}" defer></script>
   {{ with .Params.mermaid -}}
     <script src="{{ $mermaid.RelPermalink }}" defer></script>
@@ -73,21 +74,15 @@
   {{ if and (.Site.Params.options.flexSearch) (in site.Params.mainSections .Section) -}}
     <script src="{{ $index.RelPermalink }}" defer></script>
   {{ end -}}
-  {{ if .Site.Params.options.highLight -}}
-    <script src="{{ $highlight.RelPermalink }}" defer></script>
-  {{ end -}}
-  {{ if eq (.Scratch.Get "class") "home" }} 
-    <script src="{{ $dotwave.Permalink }}" defer></script>
-  {{ end -}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {{ else -}}
   {{ $js := $js | minify | fingerprint "sha512" -}}
   {{ $index := $index | minify | fingerprint "sha512" -}}
   {{ $bs := $bs | minify | fingerprint "sha512" -}}
   {{ $katex := $katex | minify | fingerprint "sha512" -}}
+  {{ $highlight := $highlight | minify | fingerprint "sha512" -}}
   {{ $katexAutoRender := $katexAutoRender | minify | fingerprint "sha512" -}}
   {{ $mermaid := $mermaid | minify | fingerprint "sha512" -}}
-  {{ $highlight := $highlight | minify | fingerprint "sha512" -}}
   {{ $dotwave := $dotwave | minify | fingerprint "sha512" -}}
   {{ if .Site.Params.options.bootStrapJs -}}
     <script src="{{ $bs.RelPermalink }}" integrity="{{ $bs.Data.Integrity }}" crossorigin="anonymous" defer></script>
@@ -100,11 +95,11 @@
   {{ with .Params.mermaid -}}
     <script src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end -}}
-  {{ if and (.Site.Params.options.flexSearch) (in site.Params.mainSections .Section) -}}
-    <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous" defer></script>
-  {{ end -}}
   {{ if .Site.Params.options.highLight -}}
     <script src="{{ $highlight.RelPermalink }}" integrity="{{ $highlight.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  {{ end -}}
+  {{ if and (.Site.Params.options.flexSearch) (in site.Params.mainSections .Section) -}}
+    <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end -}}
   {{ if eq (.Scratch.Get "class") "home"}}
     <script src="{{ $dotwave.Permalink }}" integrity="{{ $dotwave.Data.Integrity }}" crossorigin="anonymous" defer></script>

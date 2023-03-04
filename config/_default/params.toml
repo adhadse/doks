@@ -1,7 +1,7 @@
 # Meta Data for SEO
 
 ## Homepage
-title = "Anurag Dhadse"
+title = ""
 siteName = "Doks"
 homeurl = ""
 titleSeparator = "-"
@@ -83,7 +83,7 @@ lastMod = false
   flexSearch = true
   darkMode = true
   bootStrapJs = true
-  breadCrumb = true
+  breadCrumb = false
   highLight = true
   kaTex = true
   multilingualMode = false
@@ -94,3 +94,5 @@ lastMod = false
   [menu.section]
     auto = true
     collapsibleSidebar = true
+
+

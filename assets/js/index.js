@@ -4,10 +4,10 @@ $(function () {
         sectionIds.each(function(i, e){
             var container = $(this).attr('href');
             var containerOffset = $(container).offset().top;
-            var nextCotainer = $(sectionIds[i+1]).attr('href')
+            var nextContainer = $(sectionIds[i+1]).attr('href')
 
             if (i != sectionIds.length-1) {
-              var containerHeight = $(nextCotainer).offset().top;
+              var containerHeight = $(nextContainer).offset().top;
             } else {
               var containerHeight = $(container).outerHeight() + $(".docs-navigation").offset().top;
             }
@@ -17,7 +17,7 @@ $(function () {
             if(scrollPosition < containerBottom - 20 && scrollPosition >= containerOffset - 20){
               for (var j = i; j >= 0; j--) {
                 $(sectionIds[j]).removeClass('active');
-              }  
+              }
               $(sectionIds[i]).addClass('active');
             } else{
                 $(sectionIds[i]).removeClass('active');
@@ -99,47 +99,39 @@ Source:
       store: [
         "href", "title", "description"
       ],
-      index: ["title", "description", "content"]
+      index: ["title", "description"]
     }
   });
 
 
   // Not yet supported: https://github.com/nextapps-de/flexsearch#complex-documents
 
-  /*
-  var docs = [
-    {{ range $index, $page := (where .Site.Pages "Section" "docs") -}}
-      {
-        id: {{ $index }},
-        href: "{{ .Permalink }}",
-        title: {{ .Title | jsonify }},
-        description: {{ .Params.description | jsonify }},
-        content: {{ .Content | jsonify }}
-      },
-    {{ end -}}
-  ];
-  */
-
   // https://discourse.gohugo.io/t/range-length-or-last-element/3803/2
 
-  {{ $list := (where .Site.Pages "Section" "docs") -}}
+  {{ $list :=  where site.RegularPages "Type" "in" "docs" -}}
   {{ $len := (len $list) -}}
 
-  {{ range $index, $element := $list -}}
+  {{ if eq $len 0 -}}
+    index.add();
+  {{ else -}}
     index.add(
-      {
-        id: {{ $index }},
-        href: "{{ .RelPermalink }}",
-        title: {{ .Title | jsonify }},
-        {{ with .Description -}}
-          description: {{ . | jsonify }},
-        {{ else -}}
-          description: {{ .Summary | plainify | jsonify }},
+      {{ range $index, $element := $list -}}
+        {
+          id: {{ $index }},
+          href: "{{ .RelPermalink }}",
+          title: {{ .Title | jsonify }},
+          {{ with .Description -}}
+            description: {{ . | jsonify }},
+          {{ else -}}
+            description: {{ .Summary | plainify | jsonify }},
+          {{ end -}}
+        })
+        {{ if ne (add $index 1) $len -}}
+        .add(
+          {{ end -}}
         {{ end -}}
-        content: {{ .Plain | jsonify }}
-      }
-    );
-  {{ end -}}
+            ;
+    {{ end -}}
 
   search.addEventListener('input', show_results, true);
 
