@@ -99,39 +99,60 @@ Source:
       store: [
         "href", "title", "description"
       ],
-      index: ["title", "description"]
+      index: ["title", "description", "content"]
     }
   });
 
 
   // Not yet supported: https://github.com/nextapps-de/flexsearch#complex-documents
 
+  /*
+  var docs = [
+    {{ range $index, $page := (where .Site.Pages "Section" "docs") -}}
+      {
+        id: {{ $index }},
+        href: "{{ .Permalink }}",
+        title: {{ .Title | jsonify }},
+        description: {{ .Params.description | jsonify }},
+        content: {{ .Content | jsonify }}
+      },
+    {{ end -}}
+  ];
+  */
+
   // https://discourse.gohugo.io/t/range-length-or-last-element/3803/2
 
-  {{ $list :=  where site.RegularPages "Type" "in" "docs" -}}
+  {{ $list := slice }}
+  {{- if and (isset .Site.Params.options "searchsectionsindex") (not (eq (len .Site.Params.options.searchSectionsIndex) 0)) }}
+  {{- if eq .Site.Params.options.searchSectionsIndex "ALL" }}
+  {{- $list = .Site.Pages }}
+  {{- else }}
+  {{- $list = (where .Site.Pages "Type" "in" .Site.Params.options.searchSectionsIndex) }}
+  {{- if (in .Site.Params.options.searchSectionsIndex "HomePage") }}
+  {{ $list = $list | append .Site.Home }}
+  {{- end }}
+  {{- end }}
+  {{- else }}
+  {{- $list = (where .Site.Pages "Section" "docs") }}
+  {{- end }}
+
   {{ $len := (len $list) -}}
 
-  {{ if eq $len 0 -}}
-    index.add();
-  {{ else -}}
+  {{ range $index, $element := $list -}}
     index.add(
-      {{ range $index, $element := $list -}}
-        {
-          id: {{ $index }},
-          href: "{{ .RelPermalink }}",
-          title: {{ .Title | jsonify }},
-          {{ with .Description -}}
-            description: {{ . | jsonify }},
-          {{ else -}}
-            description: {{ .Summary | plainify | jsonify }},
-          {{ end -}}
-        })
-        {{ if ne (add $index 1) $len -}}
-        .add(
-          {{ end -}}
+      {
+        id: {{ $index }},
+        href: "{{ .RelPermalink }}",
+        title: {{ .Title | jsonify }},
+        {{ with .Description -}}
+          description: {{ . | jsonify }},
+        {{ else -}}
+          description: {{ .Summary | plainify | jsonify }},
         {{ end -}}
-            ;
-    {{ end -}}
+        content: {{ .Plain | jsonify }}
+      }
+    );
+  {{ end -}}
 
   search.addEventListener('input', show_results, true);
 

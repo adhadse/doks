@@ -13,6 +13,9 @@ weight: 610
 toc: true
 ---
 
+{{< alert >}}
+Learn more about [semantic versioning](https://docs.npmjs.com/about-semantic-versioning) and [advanced range syntax](https://docs.npmjs.com/cli/v6/using-npm/semver#advanced-range-syntax).
+{{< /alert >}}
 
 ## Check for outdated packages
 

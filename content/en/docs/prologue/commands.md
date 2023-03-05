@@ -108,7 +108,7 @@ Build production website including draft and future content:
 ```bash
 npm run build:preview
 ```
---- 
+---
 # Components
 
 ## Code blocks
@@ -124,7 +124,7 @@ function highlight(obj){
 
 ```python
 from abc import abstractmethod
- 
+
 # Our interface for class
 class CircleInterface:
     @abstractmehod
@@ -133,7 +133,7 @@ class CircleInterface:
 ```
 ## Katex
 
-This is an example of inline katex $\frac{x}{y}$ with `$\frac{x}{y}$`. 
+This is an example of inline katex $\frac{x}{y}$ with `$\frac{x}{y}$`.
 
 This is an example of math block of katex.
 
@@ -150,14 +150,14 @@ $$
 ## Tabs
 Tabs can be created using `tabs` shortcode passed with uniqueid and `tab` shortcode containing tab content.
 {{< tabs "uniqueid" >}}
-{{< tab "MacOS" >}} ### MacOS Content 
+{{< tab "MacOS" >}} ### MacOS Content
   Add a default page, documentation page, blog post or contributor page. Customize the homepage and 404 page.  {{< /tab >}}
-{{< tab "Linux" >}} ### Linux Content 
+{{< tab "Linux" >}} ### Linux Content
 
 {{< /tab >}}
-{{< tab "Windows" >}}  
+{{< tab "Windows" >}}
   A sample content to check `code` in tabs.
-```python 
+```python
 def num(l):
   for i in l:
     print(i)
@@ -169,13 +169,13 @@ $$
 {{< /tabs >}}
 
 ## Lists
-Ordered List 
+Ordered List
 
 1. first
 2. second
 3. third
 
-Unordered List 
+Unordered List
 
 - first
 - second
@@ -189,13 +189,13 @@ Check item
 
 ## Panel
 Panel can be created using `panel` shortcode.
-{{< panel title="What is panel?" >}} 
+{{< panel title="What is panel?" >}}
 ### A panel is a collapsible section
 This is a collapsible panel
 {{< /panel >}}
 
-Panel can be by default remain expanded, by passing `collapsed="false"` default is `true`. 
-{{< panel title="Code in panel" collapsed="false" >}} 
+Panel can be by default remain expanded, by passing `collapsed="false"` default is `true`.
+{{< panel title="Code in panel" collapsed="false" >}}
 ```html
 <div class="accordion-item">
   <div class="card-body">
@@ -207,7 +207,7 @@ Panel can be by default remain expanded, by passing `collapsed="false"` default 
 
 
 ## Alerts
-Alert can be created using shortcode `alert` and passing `type="type-name"`. 
+Alert can be created using shortcode `alert` and passing `type="type-name"`.
 
 If `type` is not provided then `"primary"` is default.
 {{< alert title="A Primary alert">}}
@@ -231,30 +231,30 @@ Secondary alert with `type="secondary"`. Can have [link](https://wikipedia.com)
 {{< /alert >}}
 
 {{< alert type="secondary" >}}
-Secondary alert with `type="secondary"` with no title. The use of alert is 
+Secondary alert with `type="secondary"` with no title. The use of alert is
 to help reader guide on some of the most important points or make him aware.
 {{< /alert >}}
 
 <mark class="y">Say you have a two-column layout: </mark> a main column with content and a sidebar. <mark class="r">Say it has a lot of content,</mark> with sections that requires scrolling. <mark class="b">The sidebar column that is largely empty</mark>, such that you can safely put a position: sticky; <mark class="v">table of contents over there for all that content in the main column</mark>. A fairly common pattern for documentation.
-Bramus Van Damme has a nice tutorial on all this, starting from semantic markup, <mark class="g">implementing most of the functionality with HTML and CSS</mark>, and then doing the last bit of active nav enhancement with JavaScript. 
+Bramus Van Damme has a nice tutorial on all this, starting from semantic markup, <mark class="g">implementing most of the functionality with HTML and CSS</mark>, and then doing the last bit of active nav enhancement with JavaScript.
 For example, if you don’t click yourself down to a section (where you might be able to get away with :target styling for active navigation), JavaScript is necessary to tell where you are scrolled to and to highlight the active navigation. That active bit is handled nicely with IntersectionObserver, which is, like, the perfect API for this.
 
 Here’s that result:
 
 Say you have a two-column layout: a main column with content and a sidebar. Say it has a lot of content, with sections that requires scrolling. The sidebar column that is largely empty, such that you can safely put a position: sticky; table of contents over there for all that content in the main column. A fairly common pattern for documentation.
-Bramus Van Damme has a nice tutorial on all this, starting from semantic markup, implementing most of the functionality with HTML and CSS, and then doing the last bit of active nav enhancement with JavaScript. 
+Bramus Van Damme has a nice tutorial on all this, starting from semantic markup, implementing most of the functionality with HTML and CSS, and then doing the last bit of active nav enhancement with JavaScript.
 For example, if you don’t click yourself down to a section (where you might be able to get away with :target styling for active navigation), JavaScript is necessary to tell where you are scrolled to and to highlight the active navigation. That active bit is handled nicely with IntersectionObserver, which is, like, the perfect API for this.
 
 Here’s that result:
 
-## Tables 
+## Tables
 Tables in markdown.
 | Heading 1 📝 | Heading 2🤟 | Heading 3 🎋|
 | --- | --- | --- |
 | item 1 😶‍🌫️| item 2 | item 3|
 | item 3 | $\alpha = \beta$ | `def` |
 
-## File Download 
+## File Download
 File download button using `file` shortcode with `link` argument.
 {{< file link="/videos/flower.mp4" >}}
 
@@ -262,17 +262,17 @@ File Download button can be provided with custom text using `title` argument.
 
 {{< file link="/files/help.txt" title="Django manage.py commands">}}
 
-## Reference Link 
+## Reference Link
 Reference Link can be used to refer to other pages in docs using `ref` shortcode.
 {{< ref link="/docs/prologue/quick-start.md">}}
 
-Reference Link can also be passed with custom text using `title` argument. 
+Reference Link can also be passed with custom text using `title` argument.
 {{< ref link="/docs/prologue/introduction.md" title="Let's Begin">}}
 
 With Custom icon `:icon-shortcode:` using `icon` argument. Check [emjoi cheat sheet](https://www.webfx.com/tools/emoji-cheat-sheet/) for more.
 {{< ref link="/docs/prologue/commands.md" icon=":heart:" >}}
 
-## Plain Link to external site 
+## Plain Link to external site
 Link button can be created using `link` shortcode.
 {{< link link="https://gohugo.io/functions/urls.parse/" title="Hugo Url parse function" >}}
 
@@ -282,7 +282,7 @@ Can be passed with custom icon with argument `icon`.
 Pass a `target` argument to change the opened link target, default is `_blank`. This is an example when `target="_self"`.
 {{< link link="https://www.w3schools.com/tags/att_a_target.asp" title="Attribute a Target" target="_self">}}
 
-## Badge 
+## Badge
 Badges can be created using `badge` shortcode and passing a `title` to it.
 | Type (`type`) | Example |
 | --- | --- |
@@ -303,12 +303,13 @@ Badges's shape can also configured using `shape` argument
 
 ## Image
 Images can be added using `figure` shortcode and caption is provided using `caption` argument.
+
 {{< figure src="/images/Shinkansen.jpg" caption=" Shinkansen (Image source: [Wikipedia](https://en.wikipedia.org/wiki/Shinkansen#/media/File:JR_East_Shinkansen_lineup_at_Niigata_Depot_201210.jpg))" >}}
 
 And some text after image looks like this.
 
 {{< figure src="https://upload.wikimedia.org/wikipedia/commons/b/be/New_hampshire_in_autumn.jpg" caption="And can be added from external sources as well. (Source [Wikipedia](https://upload.wikimedia.org/wikipedia/commons/b/be/New_hampshire_in_autumn.jpg))" >}}
 
-## Youtube 
-Youtube video can be embedded using `youtube` shortcode with `id` argument provided as Video ID. 
+## Youtube
+Youtube video can be embedded using `youtube` shortcode with `id` argument provided as Video ID.
 {{< youtube id="zHcef4eHOc8" autoplay="false" >}}

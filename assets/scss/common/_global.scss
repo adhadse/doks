@@ -4,7 +4,9 @@
 .error404 .content,
 .docs.list .content,
 .tutorial.list .content,
-.showcase.list .content {
+.showcase.list .content,
+.categories.list .content,
+.tags.list .content {
   padding-top: 1rem;
   padding-bottom: 3rem;
 }
@@ -305,27 +307,29 @@ body {
   text-decoration: none;
 }
 
-::selection{
+::selection {
   background: $black-original;
   color: $white;
   border-radius: 1em;
   border: 1px solid;
 }
 
-::-moz-selection {
-    background: $black-original;
-    color: $white;
-    border-radius: 1em;
-    border: 1px solid;
+::selection {
+  background: $black-original;
+  color: $white;
+  border-radius: 1em;
+  border: 1px solid;
 }
 
-.hljs ::selection, .hljs::selection {
-  background: $white!important;
+.hljs ::selection,
+.hljs::selection {
+  background: $white !important;
   color: $black;
 }
 
-.hljs ::-moz-selection, .hljs::-moz-selection {
-  background: $white!important;
+.hljs ::selection,
+.hljs::selection {
+  background: $white !important;
   color: $black;
 }
 
@@ -365,8 +369,9 @@ body {
   font-size: $font-size-lg;
 
   .katex-html > .newline {
-      margin-top: 1rem;
+    margin-top: 1rem;
   }
+
   .katex-html {
     overflow: scroll hidden;
   }
